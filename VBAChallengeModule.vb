@@ -40,14 +40,20 @@ Sub data_output_full()
                 ws.Cells(ticker_int, 12).Value = volume_sum
                 'Calculate and output yearly change
                 ws.Cells(ticker_int, 10).Value = close_in - open_in
-                'FormatChange Column
+                'Format Change Column
                     If (close_in - open_in) > 0 Then
                         ws.Cells(ticker_int, 10).Interior.ColorIndex = 4
                     ElseIf (close_in - open_in) < 0 Then
                         ws.Cells(ticker_int, 10).Interior.ColorIndex = 3
                     End If
                 'Calculate and output percent change
-                ws.Cells(ticker_int, 11).Value = FormatPercent((open_in - close_in) / open_in)
+                ws.Cells(ticker_int, 11).Value = FormatPercent((close_in - open_in) / open_in)
+                'Format Percent Change Column
+                    If ((close_in - open_in) / open_in) > 0 Then
+                        ws.Cells(ticker_int, 11).Interior.ColorIndex = 4
+                    ElseIf ((close_in - open_in) / open_in) < 0 Then
+                        ws.Cells(ticker_int, 11).Interior.ColorIndex = 3
+                    End If
                 'Set new ticker last value to compare
                 ticker_last = ticker_in
                 'Iterate ticker_int
